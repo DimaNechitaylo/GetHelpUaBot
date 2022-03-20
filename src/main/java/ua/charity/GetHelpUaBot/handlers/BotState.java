@@ -1,9 +1,7 @@
 package ua.charity.GetHelpUaBot.handlers;
 
-/**
- * @author Dmitry Nechytailo
- */
-
 public enum BotState {
-    SIGN_UP
+    SIGN_UP,
+    TEST1,
+    TEST2
 }

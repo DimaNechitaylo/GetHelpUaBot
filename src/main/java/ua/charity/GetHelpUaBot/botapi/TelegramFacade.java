@@ -11,9 +11,7 @@ import ua.charity.GetHelpUaBot.handlers.BotState;
 import ua.charity.GetHelpUaBot.handlers.BotStateContext;
 import ua.charity.GetHelpUaBot.handlers.CallbackQueryFacade;
 
-/**
- * @author Dmitry Nechytailo
- */
+ 
 
 @Service
 @Slf4j

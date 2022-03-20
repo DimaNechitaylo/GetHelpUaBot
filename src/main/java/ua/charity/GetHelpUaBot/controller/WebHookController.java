@@ -6,9 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ua.charity.GetHelpUaBot.botapi.Bot;
 
-/**
- * @author Dmitry Nechytailo
- */
+ 
 
 @Slf4j
 @RestController

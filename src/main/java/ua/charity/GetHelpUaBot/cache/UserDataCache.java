@@ -6,9 +6,7 @@ import ua.charity.GetHelpUaBot.handlers.BotState;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Dmitry Nechytailo
- */
+ 
 
 @Service
 public class UserDataCache implements DataCache {

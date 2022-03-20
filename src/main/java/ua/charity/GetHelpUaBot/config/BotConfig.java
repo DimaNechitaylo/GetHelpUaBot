@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import ua.charity.GetHelpUaBot.botapi.Bot;
 import ua.charity.GetHelpUaBot.botapi.TelegramFacade;
 
-/**
- * @author Dmitry Nechytailo
- */
+ 
 
 @Component
 @ConfigurationProperties(prefix = "bot")

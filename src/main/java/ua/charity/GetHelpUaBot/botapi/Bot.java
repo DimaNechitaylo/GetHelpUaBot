@@ -14,9 +14,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ua.charity.GetHelpUaBot.exceptions.ApplicationStartException;
 
-/**
- * @author Dmitry Nechytailo
- */
+ 
 
 @Slf4j
 @Getter
