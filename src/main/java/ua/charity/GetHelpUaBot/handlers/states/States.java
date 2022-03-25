@@ -13,8 +13,8 @@ public class States {
     public static void getStartMenuState(MessageSender messageSender, DataCache userDataCache, Long userId){
         messageSender.setChatId(userDataCache.getCurrentUserId());
         messageSender.setText("StartMenu");
-        messageSender.setButtons(Arrays.asList(new Button("TEST1"),
-                new Button("TEST2")));
+        messageSender.setButtons(Arrays.asList(new Button("Test1"),
+                new Button("Test2")));
         messageSender.sendMessage();
         userDataCache.setUserCurrentBotState(userId, BotState.SIGN_UP);
     }

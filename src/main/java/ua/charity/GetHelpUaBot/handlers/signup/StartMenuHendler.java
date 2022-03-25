@@ -33,16 +33,14 @@ public class StartMenuHendler implements InputMessageHandler {
     @Override
     public void handle(Message message) {
         switch (message.getText()) {
-            case "TEST1":
+            case "Test1":
                 States.getTestFstState(messageSender, userDataCache, message.getFrom().getId());
                 break;
-            case "TEST2":
+            case "Test2":
                 States.getTestScndMenuState(messageSender, userDataCache, message.getFrom().getId());
                 break;
-            case "/start":
-                States.getStartMenuState(messageSender, userDataCache, message.getFrom().getId());
-                break;
             default:
+                States.getStartMenuState(messageSender, userDataCache, message.getFrom().getId());
                 break;
         }
     }

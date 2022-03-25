@@ -23,12 +23,14 @@ public class User {
     private String firstName;
     private String lastName;
     private long phoneNumber;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="location_id", nullable = false)
-    private Location location;
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private List<Location> locations;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<Possibility> possibilities;
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<Task> tasks;
     private Instant creationDateime;
     private Instant changeDateime;

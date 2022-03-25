@@ -17,6 +17,7 @@ import ua.charity.GetHelpUaBot.repository.UserRepository;
 import ua.charity.GetHelpUaBot.service.UserService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -72,7 +73,7 @@ public class UserServiceImpl implements UserService {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .phoneNumber(Long.parseLong(userDto.getPhoneNumber()))
-                .location(userDto.getLocationDto() != null ?
+                .locations(Arrays.asList(userDto.getLocationDto() != null ?
                         Location.builder()
                                 .country(Country.builder().name(userDto.getLocationDto().getCountryName()).build())
                                 .region(Region.builder().name(userDto.getLocationDto().getRegionName()).build())
@@ -81,7 +82,7 @@ public class UserServiceImpl implements UserService {
                                 .longitude(userDto.getLocationDto().getLongitude())
                                 .latitude(userDto.getLocationDto().getLatitude())
                                 .build()
-                        : null)
+                        : null))
                 .possibilities(userDto.getPossibilities() != null ?
                         userDto.getPossibilities()
                                 .stream()
@@ -109,24 +110,24 @@ public class UserServiceImpl implements UserService {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .phoneNumber(Long.toString(user.getPhoneNumber()))
-                .locationDto(user.getLocation() != null ?
+                .locationDto(user.getLocations() != null ?
                         LocationDto.builder()
-                                .countryName(user.getLocation().getCountry() != null ?
-                                        user.getLocation().getCountry().getName()
+                                .countryName(user.getLocations().get(0).getCountry() != null ?
+                                        user.getLocations().get(0).getCountry().getName()
                                         : null)
-                                .regionName(user.getLocation().getRegion() != null ?
-                                        user.getLocation().getRegion().getName()
+                                .regionName(user.getLocations().get(0).getRegion() != null ?
+                                        user.getLocations().get(0).getRegion().getName()
                                         : null)
-                                .cityName(user.getLocation().getCity() != null ?
-                                        user.getLocation().getCity().getName()
+                                .cityName(user.getLocations().get(0).getCity() != null ?
+                                        user.getLocations().get(0).getCity().getName()
                                         : null)
-                                .longitude(user.getLocation().getLongitude())
-                                .latitude(user.getLocation().getLatitude())
+                                .longitude(user.getLocations().get(0).getLongitude())
+                                .latitude(user.getLocations().get(0).getLatitude())
                                 .build()
                         : null)
-                .nativeRegion(user.getLocation() != null
-                        ? user.getLocation().getNativeRegion() != null
-                        ? user.getLocation().getNativeRegion().getName()
+                .nativeRegion(user.getLocations() != null
+                        ? user.getLocations().get(0).getNativeRegion() != null
+                        ? user.getLocations().get(0).getNativeRegion().getName()
                         : null
                         : null)
                 .possibilities(user.getPossibilities()
