@@ -12,9 +12,6 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ua.charity.GetHelpUaBot.exceptions.ApplicationStartException;
-
- 
 
 @Slf4j
 @Getter
@@ -25,15 +22,15 @@ public class Bot extends TelegramWebhookBot {
     String botUsername;
     String botToken;
 
-    private TelegramFacade telegramFacade;
+    private UserMessageContext userMessageContext;
 
-    public Bot(TelegramFacade telegramFacade) {
-        this.telegramFacade = telegramFacade;
+    public Bot(UserMessageContext userMessageContext) {
+        this.userMessageContext = userMessageContext;
     }
 
     @Override
         public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        telegramFacade.handleUpdate(update);
+        userMessageContext.handleUpdate(update);
         return null;
     }
 

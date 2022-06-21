@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Users")
 public class User {
     @Id
     private Long id;
@@ -23,15 +22,17 @@ public class User {
     private String firstName;
     private String lastName;
     private long phoneNumber;
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private List<Location> locations;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private Location location;
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<Possibility> possibilities;
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<Task> tasks;
-    private Instant creationDateime;
-    private Instant changeDateime;
+    private Instant creationDatetime;
+    private Instant changeDatetime;
 }

@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ua.charity.GetHelpUaBot.boilerplate.MessageSender;
-import ua.charity.GetHelpUaBot.cache.DataCache;
+import ua.charity.GetHelpUaBot.cache.StateCache;
 import ua.charity.GetHelpUaBot.handlers.BotState;
 import ua.charity.GetHelpUaBot.handlers.InputMessageHandler;
-import ua.charity.GetHelpUaBot.handlers.states.States;
+import ua.charity.GetHelpUaBot.handlers.states.DeterminedStates;
 import ua.charity.GetHelpUaBot.service.UserService;
 import ua.charity.GetHelpUaBot.utils.LocaleTextManager;
 
@@ -15,7 +15,7 @@ import ua.charity.GetHelpUaBot.utils.LocaleTextManager;
     public class TestHendler implements InputMessageHandler {
 
         @Autowired
-        private DataCache userDataCache;
+        private StateCache userStateCache;
 
         @Autowired
         private MessageSender messageSender;
@@ -28,12 +28,12 @@ import ua.charity.GetHelpUaBot.utils.LocaleTextManager;
 
 
         @Override
-        public void handle(Message message) {
-            States.getStartMenuState(messageSender, userDataCache, message.getFrom().getId());
+        public void process(Message message) {
+            DeterminedStates.getStartMenuState(messageSender, userStateCache, message.getFrom().getId());
         }
 
         @Override
-        public BotState getHandlerName() {
+        public BotState getStateName() {
             return BotState.TEST1;
         }
     }

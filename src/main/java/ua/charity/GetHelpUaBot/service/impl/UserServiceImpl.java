@@ -73,16 +73,16 @@ public class UserServiceImpl implements UserService {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .phoneNumber(Long.parseLong(userDto.getPhoneNumber()))
-                .locations(Arrays.asList(userDto.getLocationDto() != null ?
-                        Location.builder()
-                                .country(Country.builder().name(userDto.getLocationDto().getCountryName()).build())
-                                .region(Region.builder().name(userDto.getLocationDto().getRegionName()).build())
-                                .city(City.builder().name(userDto.getLocationDto().getCityName()).build())
-                                .nativeRegion(Region.builder().name(userDto.getNativeRegion()).build())
-                                .longitude(userDto.getLocationDto().getLongitude())
-                                .latitude(userDto.getLocationDto().getLatitude())
-                                .build()
-                        : null))
+//                .locations(Arrays.asList(userDto.getLocationDto() != null ?
+//                        Location.builder()
+//                                .country(Country.builder().name(userDto.getLocationDto().getCountryName()).build())
+//                                .region(Region.builder().name(userDto.getLocationDto().getRegionName()).build())
+//                                .city(City.builder().name(userDto.getLocationDto().getCityName()).build())
+//                                .nativeRegion(Region.builder().name(userDto.getNativeRegion()).build())
+//                                .longitude(userDto.getLocationDto().getLongitude())
+//                                .latitude(userDto.getLocationDto().getLatitude())
+//                                .build()
+//                        : null))
                 .possibilities(userDto.getPossibilities() != null ?
                         userDto.getPossibilities()
                                 .stream()
@@ -110,36 +110,36 @@ public class UserServiceImpl implements UserService {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .phoneNumber(Long.toString(user.getPhoneNumber()))
-                .locationDto(user.getLocations() != null ?
-                        LocationDto.builder()
-                                .countryName(user.getLocations().get(0).getCountry() != null ?
-                                        user.getLocations().get(0).getCountry().getName()
-                                        : null)
-                                .regionName(user.getLocations().get(0).getRegion() != null ?
-                                        user.getLocations().get(0).getRegion().getName()
-                                        : null)
-                                .cityName(user.getLocations().get(0).getCity() != null ?
-                                        user.getLocations().get(0).getCity().getName()
-                                        : null)
-                                .longitude(user.getLocations().get(0).getLongitude())
-                                .latitude(user.getLocations().get(0).getLatitude())
-                                .build()
-                        : null)
-                .nativeRegion(user.getLocations() != null
-                        ? user.getLocations().get(0).getNativeRegion() != null
-                        ? user.getLocations().get(0).getNativeRegion().getName()
-                        : null
-                        : null)
+//                .locationDto(user.getLocations() != null ?
+//                        LocationDto.builder()
+//                                .countryName(user.getLocations().get(0).getCountry() != null ?
+//                                        user.getLocations().get(0).getCountry().getName()
+//                                        : null)
+//                                .regionName(user.getLocations().get(0).getRegion() != null ?
+//                                        user.getLocations().get(0).getRegion().getName()
+//                                        : null)
+//                                .cityName(user.getLocations().get(0).getCity() != null ?
+//                                        user.getLocations().get(0).getCity().getName()
+//                                        : null)
+//                                .longitude(user.getLocations().get(0).getLongitude())
+//                                .latitude(user.getLocations().get(0).getLatitude())
+//                                .build()
+//                        : null)
+//                .nativeRegion(user.getLocations() != null
+//                        ? user.getLocations().get(0).getNativeRegion() != null
+//                        ? user.getLocations().get(0).getNativeRegion().getName()
+//                        : null
+//                        : null)
                 .possibilities(user.getPossibilities()
                         .stream()
                         .collect(()-> new ArrayList<String>(),
-                                (list, item) -> list.add(item.getText()),
+                                (list, item) -> list.add(item.getDescription()),
                                 (list1, list2)-> list1.addAll(list2))
                 )
                 .tasks(user.getTasks()
                         .stream()
                         .collect(()-> new ArrayList<String>(),
-                                (list, item) -> list.add(item.getText()),
+                                (list, item) -> list.add(item.getDescription()),
                                 (list1, list2)-> list1.addAll(list2))
                 )
                 .build();

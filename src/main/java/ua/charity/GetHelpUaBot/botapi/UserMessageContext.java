@@ -2,26 +2,26 @@ package ua.charity.GetHelpUaBot.botapi;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ua.charity.GetHelpUaBot.cache.UserDataCache;
+import ua.charity.GetHelpUaBot.cache.StateCacheImpl;
 import ua.charity.GetHelpUaBot.exceptions.ApplicationStartException;
+import ua.charity.GetHelpUaBot.exceptions.InvalidCommandException;
 import ua.charity.GetHelpUaBot.handlers.BotState;
 import ua.charity.GetHelpUaBot.handlers.BotStateContext;
 import ua.charity.GetHelpUaBot.handlers.CallbackQueryFacade;
 
- 
+
 
 @Service
 @Slf4j
-public class TelegramFacade {
-    private UserDataCache userDataCache;
+public class UserMessageContext {
+    private StateCacheImpl userDataCache;
     private BotStateContext botStateContext;
     private CallbackQueryFacade callbackQueryFacade;
 
-    public TelegramFacade(UserDataCache userDataCache, BotStateContext botStateContext,
-                          CallbackQueryFacade callbackQueryFacade) {
+    public UserMessageContext(StateCacheImpl userDataCache, BotStateContext botStateContext,
+                              CallbackQueryFacade callbackQueryFacade) {
         this.userDataCache = userDataCache;
         this.botStateContext = botStateContext;
         this.callbackQueryFacade = callbackQueryFacade;
@@ -30,15 +30,14 @@ public class TelegramFacade {
     public void handleUpdate(Update update) {
         try {
             Long userid = -1L;
-
             if (update.hasCallbackQuery()) {
-                log.info("New callbackQuery from User: {} with data: {}", update.getCallbackQuery().getFrom().getUserName(),
+                log.info("New callbackQuery from User: {} with data: {}",
+                        update.getCallbackQuery().getFrom().getUserName(),
                         update.getCallbackQuery().getData());
                 userid = getUserIdFromCallback(update);
                 userDataCache.setCurrentUserId(userid);
                 callbackQueryFacade.processCallbackQuery(update.getCallbackQuery());
             }
-
             Message message = update.getMessage();
             if (message != null && message.hasText()) {
                 log.info("New message from User:{}, chatId: {},  with text: {}",
@@ -47,18 +46,14 @@ public class TelegramFacade {
                 userDataCache.setCurrentUserId(userid);
                 handleInputMessage(message);
             }
-
             if (userid == -1) {
                 throw new ApplicationStartException("User Id could not be obtained while receiving the update");
             }
             userDataCache.setCurrentUserId(userid);
-
-
         } catch (Exception e) {
-            log.error(e.getStackTrace().toString());
+            log.error(e.getMessage());
         }
     }
-
 
     private Long getUserIdFromCallback(Update update) {
         return update.getCallbackQuery().getFrom().getId();
@@ -84,7 +79,11 @@ public class TelegramFacade {
 
         userDataCache.setUserCurrentBotState(userId, botState);
 
-        botStateContext.processInputMessage(botState, message);
+        try {
+            botStateContext.processInputMessage(botState, message);
+        } catch (InvalidCommandException e) {
+            log.error(e.getMessage());
+        }
     }
 }
 

@@ -16,7 +16,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Locations")
 public class Location{
     @Id
     @Column(name = "id", nullable = false)

@@ -14,17 +14,16 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Possibilities")
 public class Possibility {
     @Id
     private Long id;
     @NonNull
     @Type(type="text")
-    private String text;
+    private String description;
     private Instant creationDateime;
 
-    public Possibility(String text){
-        this.text = text;
+    public Possibility(String description){
+        this.description = description;
     }
 }
 

@@ -1,13 +1,11 @@
 package ua.charity.GetHelpUaBot.handlers;
 
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import ua.charity.GetHelpUaBot.exceptions.InvalidCommandException;
 
- 
 
 public interface InputMessageHandler {
-    void handle(Message message);
+    void process(Message message) throws InvalidCommandException;
 
-    BotState getHandlerName();
-
+    BotState getStateName();
 }

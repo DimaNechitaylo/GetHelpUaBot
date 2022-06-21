@@ -1,7 +1,5 @@
 package ua.charity.GetHelpUaBot.boilerplate;
 
-import lombok.Builder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -94,10 +92,10 @@ public class MessageSender {
             for (int j = buttonNum; j < totalButtons; j++) {
                 Button button = buttons.get(buttonNum);
                 KeyboardButton btn = new KeyboardButton(button.getText());
-                if (button.isSetAsContactButton()) {
+                if (button.isContactButton()) {
                     btn.setRequestContact(true);
                 }
-                if (button.isSetAsLocationButton()) {
+                if (button.isLocationButton()) {
                     btn.setRequestLocation(true);
                 }
                 row.add(btn);
@@ -115,7 +113,7 @@ public class MessageSender {
 
     public void setInlineButtons(List<InlineButton> buttons) {
         if (buttons == null || buttons.isEmpty()) {
-            throw new IllegalClassStateException("Inline buttons can't be set if the list is null or empty");
+            throw new IllegalClassStateException("Inline buttons cannot be adjusted if the list is null or empty");
         }
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();

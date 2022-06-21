@@ -26,9 +26,7 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 	implementation group: 'org.telegram', name: 'telegrambots-spring-boot-starter', version: '5.7.1'
-
 }
 
 tasks.named('test') {

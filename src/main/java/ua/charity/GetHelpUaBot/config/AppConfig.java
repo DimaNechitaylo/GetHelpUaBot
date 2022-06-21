@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.client.RestTemplate;
 import ua.charity.GetHelpUaBot.botapi.Bot;
-import ua.charity.GetHelpUaBot.botapi.TelegramFacade;
+import ua.charity.GetHelpUaBot.botapi.UserMessageContext;
  
 
 @Configuration
@@ -33,8 +33,8 @@ public class AppConfig {
     }
 
     @Bean
-    public Bot getHelpUaBot(TelegramFacade telegramFacade){
-        Bot bot = new Bot(telegramFacade);
+    public Bot getHelpUaBot(UserMessageContext userMessageContext){
+        Bot bot = new Bot(userMessageContext);
         bot.setWebHookPath(botConfig.getWebHookPath());
         bot.setBotUsername(botConfig.getUsername());
         bot.setBotToken(botConfig.getToken());

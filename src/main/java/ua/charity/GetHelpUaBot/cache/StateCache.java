@@ -2,7 +2,7 @@ package ua.charity.GetHelpUaBot.cache;
 
 import ua.charity.GetHelpUaBot.handlers.BotState;
 
-public interface DataCache {
+public interface StateCache {
 
     void setUserCurrentBotState(Long userId, BotState botState);
 

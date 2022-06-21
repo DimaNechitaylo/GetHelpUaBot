@@ -8,6 +8,13 @@ public class InlineButton {
     private String command;
     private Optional<String> url;
 
+    /**
+     *
+      * @param text This parameter assigns the text that will be displayed on the button.
+     * @param command This parameter passes information that the service will process.
+     *                Give in the format:
+     *                String.format("%s|%s|...", CallbackQueryType.UNSUBSCRIBE, [what needs to be sent], ...);
+     */
     public InlineButton(String text, String command) {
         this.text = text;
         this.command = command;

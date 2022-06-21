@@ -2,10 +2,7 @@ package ua.charity.GetHelpUaBot.model.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.Instant;
 
  
@@ -15,16 +12,26 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Tasks")
 public class Task {
     @Id
     private Long id;
     @NonNull
-    private String text;
-    private Instant creationDateime;
+    private Instant creationDatetime;
+    @NonNull
+    private String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recepient_id", referencedColumnName = "id")
+    private User recepient;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "donor_id", referencedColumnName = "id")
+    private User donor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "logistician_id", referencedColumnName = "id")
+    private User logistician;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-
-    public Task(String text){
-        this.text = text;
+    public Task(String description){
+        this.description = description;
     }
 }

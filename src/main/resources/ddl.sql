@@ -1,5 +1,5 @@
-create database help_to_ukranians;
-use help_to_ukranians;
+--create database help_to_ukranians_test2;
+use help_to_ukranians_test2;
 
 INSERT INTO Texts(mne, text) VALUE("Hello_text","Привіт. Цей бот створено для тих, хто вимушено виїхав з України. Він допоможе:
 ▪ сформувати спільноти на місцях та бути на зв’язку один з одним

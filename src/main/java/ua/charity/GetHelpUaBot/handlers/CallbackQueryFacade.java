@@ -34,6 +34,7 @@ public class CallbackQueryFacade {
         Optional<CallbackQueryHandler> queryHandler = callbackQueryHandlers.stream().
                 filter(callbackQuery -> callbackQuery.getHandlerQueryType().equals(usersQueryType)).findFirst();
 
-        queryHandler.map(handler -> handler.handleCallbackQuery(usersQuery)).orElseThrow(() -> new CallbackNotFoundException("Callback handler doesn`t exist"));
+//        queryHandler.map(handler -> handler.handleCallbackQuery(usersQuery)).orElseThrow(()
+//                -> new CallbackNotFoundException("Callback handler doesn`t exist"));
     }
 }

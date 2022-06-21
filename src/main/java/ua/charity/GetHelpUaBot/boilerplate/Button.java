@@ -3,17 +3,17 @@ package ua.charity.GetHelpUaBot.boilerplate;
 public class Button {
 
     private String text;
-    private boolean setAsContactButton;
-    private boolean setAsLocationButton;
+    private boolean locationButton;
+    private boolean contactButton;
 
     public Button(String text) {
         this.text = text;
     }
 
-    public Button(String text, boolean setAsContactButton, boolean setAsLocationButton) {
+    public Button(String text, boolean contactButton, boolean locationButton) {
         this.text = text;
-        this.setAsContactButton = setAsContactButton;
-        this.setAsLocationButton = setAsLocationButton;
+        this.contactButton = contactButton;
+        this.locationButton = locationButton;
     }
 
     public String getText() {
@@ -22,17 +22,17 @@ public class Button {
     public void setText(String text) {
         this.text = text;
     }
-    public boolean isSetAsContactButton() {
-        return setAsContactButton;
+    public boolean isLocationButton() {
+        return locationButton;
     }
-    public void setSetAsContactButton(boolean setAsContactButton) {
-        this.setAsContactButton = setAsContactButton;
+    public void setLocationButton(boolean locationButton) {
+        this.locationButton = locationButton;
     }
-    public boolean isSetAsLocationButton() {
-        return setAsLocationButton;
+    public boolean isContactButton() {
+        return contactButton;
     }
-    public void setSetAsLocationButton(boolean setAsLocationButton) {
-        this.setAsLocationButton = setAsLocationButton;
+    public void setContactButton(boolean contactButton) {
+        this.contactButton = contactButton;
     }
 
 }

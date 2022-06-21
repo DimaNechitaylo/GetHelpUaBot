@@ -8,19 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Locale;
 
-@Service
 public class LocaleTextManager {
     private static Locale locale;
     private static MessageSource messageSource;
 
-    @Autowired
-    public LocaleTextManager(@Value("${localeTag}") String localeTag, MessageSource messageSource) {
-        this.messageSource = messageSource;
-        this.locale = Locale.forLanguageTag(localeTag);
-    }
-
-
-    public static String getMessageText(String mne) {
+    public static String getMessageText(String mne, @Value("${localeTag}") String localeTag) {
         return messageSource.getMessage(mne, null, locale);
     }
 

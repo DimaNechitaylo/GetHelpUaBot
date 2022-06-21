@@ -1,8 +1,8 @@
 package ua.charity.GetHelpUaBot.handlers;
 
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import ua.charity.GetHelpUaBot.exceptions.InvalidCommandException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +15,11 @@ public class BotStateContext {
     private Map<BotState, InputMessageHandler> messageHandlers = new HashMap<>();
 
     public BotStateContext(List<InputMessageHandler> messageHandlers) {
-        messageHandlers.forEach(handler -> this.messageHandlers.put(handler.getHandlerName(), handler));
+        messageHandlers.forEach(handler -> this.messageHandlers.put(handler.getStateName(), handler));
     }
 
-    public void processInputMessage(BotState currentState, Message message) {
-        findMessageHandler(currentState).handle(message);;
+    public void processInputMessage(BotState currentState, Message message) throws InvalidCommandException {
+        findMessageHandler(currentState).process(message);;
     }
 
     private InputMessageHandler findMessageHandler(BotState currentState) {
